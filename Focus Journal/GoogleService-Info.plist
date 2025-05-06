@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDV5KzoCG-5LBaJvr3HxqBco88U_NgfJbU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>681404844598</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.andreperez.Focus-Journal</string>
+	<key>PROJECT_ID</key>
+	<string>focus-journal-78f62</string>
+	<key>STORAGE_BUCKET</key>
+	<string>focus-journal-78f62.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:681404844598:ios:7ad50530d097dd7a95e697</string>
+</dict>
+</plist>

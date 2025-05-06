@@ -1,0 +1,28 @@
+# Xcode
+DerivedData/
+*.xcworkspace
+*.xcodeproj/project.xcworkspace/
+*.xcuserdata
+*.xccheckout
+
+# Swift Package Manager
+.build/
+Packages/
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# API keys or sensitive files
+APIKeys.swift
+Secrets.xcconfig
+
+# User-specific settings
+*.swp
+*.lock
+*.DS_Store
+
+# Logs
+*.log
