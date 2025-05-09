@@ -1,5 +1,6 @@
 import SwiftUI
 import FirebaseFirestore // Import Firestore to use Timestamp
+import Foundation
 
 // Model for a Journal Entry, conforming to Identifiable
 struct JournalEntry: Identifiable {
@@ -214,4 +215,13 @@ private struct PastEntryCard: View {
 #Preview {
     DashboardView()
         .environmentObject(JournalData())
+}
+
+fileprivate func loadAPIKey(named keyName: String) -> String {
+    guard let filePath = Bundle.main.path(forResource: "Secrets", ofType: "plist"),
+          let plist = NSDictionary(contentsOfFile: filePath),
+          let value = plist[keyName] as? String else {
+        fatalError("❌ API Key '\(keyName)' not found in Secrets.plist")
+    }
+    return value
 }
