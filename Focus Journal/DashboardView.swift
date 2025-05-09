@@ -216,12 +216,3 @@ private struct PastEntryCard: View {
     DashboardView()
         .environmentObject(JournalData())
 }
-
-fileprivate func loadAPIKey(named keyName: String) -> String {
-    guard let filePath = Bundle.main.path(forResource: "Secrets", ofType: "plist"),
-          let plist = NSDictionary(contentsOfFile: filePath),
-          let value = plist[keyName] as? String else {
-        fatalError("❌ API Key '\(keyName)' not found in Secrets.plist")
-    }
-    return value
-}

@@ -500,7 +500,7 @@ Only output valid JSON — no extra commentary, no markdown, no explanations.
 // Helper function to load values from Info.plist
 enum ConfigError: Error {
     case missingKey(String)
-    case invalidValue
+    case invalidValue(String)
 }
 
 func loadAPIKey(named keyName: String) throws -> String {
