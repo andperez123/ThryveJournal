@@ -392,6 +392,12 @@ extension PKCanvasView {
 
 
 func sendTextToChatGPT(_ text: String, completion: @escaping (AIResponse?) -> Void) {
+    guard let openAIKey = try? loadAPIKey(named: "OPENAI_KEY") else {
+        print("🚨 CRITICAL: OPENAI_KEY not found or invalid in Info.plist. Check build configurations and Secrets.xcconfig generation.")
+        completion(nil)
+        return
+    }
+
     guard let url = URL(string: "https://api.openai.com/v1/chat/completions") else {
         completion(nil)
         return
@@ -399,7 +405,7 @@ func sendTextToChatGPT(_ text: String, completion: @escaping (AIResponse?) -> Vo
 
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
-    request.addValue("Bearer \(APIKeys.openAIKey)", forHTTPHeaderField: "Authorization")
+    request.addValue("Bearer \(openAIKey)", forHTTPHeaderField: "Authorization")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
     let messages: [[String: String]] = [
@@ -489,5 +495,22 @@ Only output valid JSON — no extra commentary, no markdown, no explanations.
             completion(nil)
         }
     }.resume()
+}
+
+// Helper function to load values from Info.plist
+enum ConfigError: Error {
+    case missingKey(String)
+    case invalidValue
+}
+
+func loadAPIKey(named keyName: String) throws -> String {
+    guard let infoDictionary = Bundle.main.infoDictionary,
+          let value = infoDictionary[keyName] as? String else {
+        throw ConfigError.missingKey("API Key '\\(keyName)' not found in Info.plist. Make sure it's set in your build configuration (e.g., Secrets.xcconfig) and referenced in Info.plist.")
+    }
+    if value.isEmpty || value == "$(\\(keyName))" { // Check if it's empty or still has the placeholder
+        throw ConfigError.invalidValue("API Key '\\(keyName)' has an invalid or placeholder value in Info.plist.")
+    }
+    return value
 }
 
